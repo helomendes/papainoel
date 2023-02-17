@@ -4,20 +4,20 @@
 typedef struct presente{
 	int valor;
 	int peso;
+	int id;
 	struct presente *prox;
 } presente_t;
 
-typedef struct lista{
+typedef struct saco{
 	presente_t *cabeca;
-	presente_t *cauda;
-} lista_t;
+	int peso;
+	int valor;
+} saco_t;
 
-presente_t *recebePresente();
+void lePresentes(int n, presente_t v[]);
 
-void criarLista(lista_t **papainoel);
+saco_t *criaSaco();
 
-int inicializarLista(lista_t **papainoel);
 
-void destruirLista(lista_t **papainoel);
 
 #endif
