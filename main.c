@@ -2,16 +2,7 @@
 #include <stdlib.h>
 #include "presentes.h"
 
-struct presente{
-	int valor;
-	int peso;
-	struct presente *prox;
-};
 
-struct lista{
-	struct presente *cabeca;
-	struct presente *cauda;
-};
 
 int main(){
 	int n;

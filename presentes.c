@@ -2,35 +2,26 @@
 #include <stdlib.h>
 #include "presentes.h"
 
-struct presente{
-	int valor;
-	int peso;
-	struct presente *prox;
-};
-
-struct lista{
-	struct presente *cabeca;
-};
 
 //le os dados de uma linha
-struct presente *recebePresente(){
-		struct presente *novo;
-		novo = malloc(sizeof(struct presente));
+presente_t *recebePresente(){
+		presente_t *novo;
+		novo = malloc(sizeof(presente_t));
 		scanf("%d %d", &novo->valor, &novo->peso);
 		novo->prox = NULL;
 		return novo;
 }
 
 //adiciona os dados recebidos à lista
-void criarLista(struct lista **papainoel){
-	struct presente *novo;
+void criarLista(lista_t **papainoel){
+	presente_t *novo;
 	novo = recebePresente();
 
 	if(!(*papainoel)->cabeca){
 		(*papainoel)->cabeca = novo;
 	}
 	else{
-		struct presente *aux;
+		presente_t *aux;
 		aux = (*papainoel)->cabeca;
 		while(aux->prox)
 			aux = aux->prox;
@@ -39,8 +30,8 @@ void criarLista(struct lista **papainoel){
 	}
 }
 
-int inicializarLista(struct lista **papainoel){
-	(*papainoel) = malloc(sizeof(struct lista));
+int inicializarLista(lista_t **papainoel){
+	(*papainoel) = malloc(sizeof(lista_t));
 	(*papainoel)->cabeca = NULL;
 	if(!(*papainoel)){
 		printf("Alocação de memória falhou.\n");
@@ -49,8 +40,8 @@ int inicializarLista(struct lista **papainoel){
 	return 1;
 }
 
-void destruirLista(struct lista **papainoel){
-	struct presente *aux;
+void destruirLista(lista_t **papainoel){
+	presente_t *aux;
 	while((*papainoel)->cabeca){
 		aux = (*papainoel)->cabeca->prox;
 		free((*papainoel)->cabeca);
