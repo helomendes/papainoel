@@ -2,16 +2,16 @@
 #include <stdlib.h>
 #include "presentes.h"
 
-struct presente{
+typedef struct presente{
 	int valor;
 	int peso;
 	struct presente *prox;
-};
+} presente_t;
 
-struct lista{
+typedef struct lista{
 	struct presente *cabeca;
 	struct presente *cauda;
-};
+} lista_t;
 
 int main(){
 	int n;
@@ -22,7 +22,7 @@ int main(){
 	scanf("%d %d", &n, &pmax);
 
 //inicialização da lista de presentes
-	struct lista *papainoel;
+	lista_t *papainoel;
 	memoria = inicializarLista(&papainoel);
 	if(!memoria)
 		return 0;
@@ -34,7 +34,7 @@ int main(){
 //loop pra ter certeza que ta lendo os valores certos
 	printf("Lista do Papai Noel:\n");
 	int i = 1;
-	struct presente *aux = papainoel->cabeca;
+	presente_t *aux = papainoel->cabeca;
 	while(aux){
 		printf("v_%d: %d\t", i, aux->valor);
 		printf("p_%d: %d\n", i, aux->peso);
