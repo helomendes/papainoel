@@ -16,8 +16,6 @@ typedef struct saco{
 
 void lePresentes(int n, presente_t v[]);
 
-saco_t *criaSaco();
-
-
+void adicionarPresente(struct saco **atual, struct presente presente);
 
 #endif

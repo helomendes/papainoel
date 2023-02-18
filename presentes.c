@@ -14,10 +14,16 @@ void lePresentes(int n, presente_t v[]){
 	}
 }
 
-saco_t *criaSaco(){
-	
+void adicionarPresente(struct saco **atual, struct presente presente){
+	if((*atual)->cabeca != NULL){
+		(*atual)->cabeca = &presente;
+		(*atual)->peso = (*atual)->peso + presente.peso;
+		}
+	else{
+		presente_t *aux = (*atual)->cabeca;
+		while(aux->prox)
+			aux = aux->prox;
+		aux->prox = &presente;
+		(*atual)->peso = (*atual)->peso + presente.peso;
+	}
 }
-
-
-
-
