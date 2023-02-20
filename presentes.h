@@ -18,4 +18,6 @@ void lePresentes(int n, presente_t v[]);
 
 void adicionarPresente(struct saco **atual, struct presente presente);
 
+void removerPresente(struct saco **atual);
+
 #endif

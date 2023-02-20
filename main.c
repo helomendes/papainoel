@@ -2,10 +2,19 @@
 #include <stdlib.h>
 #include "presentes.h"
 
-struct saco *criarSaco(int pmax, struct saco **atual, struct saco **melhor, struct presente v[]){
-	if((*atual)->peso + v[0].peso <= pmax)
-		adicionarPresente(&*atual, v[0]);
-	(*melhor) = (*atual);
+struct saco *criarSaco(int pmax, int n, int i, struct saco **atual, struct saco **melhor, struct presente v[]){
+
+	if((*atual)->peso + v[i].peso > pmax)
+		return (*atual);
+	adicionarPresente(&*atual, v[i]);
+	if((*melhor)->valor < (*atual)->valor)
+		(*melhor) = (*atual);
+	i++;
+	while(i<=n){
+		criarSaco(pmax, n, i, &*atual, &*melhor, v);
+		i++;
+	}
+	removerPresente(&*atual);
 	return (*melhor);
 }
 
@@ -23,17 +32,20 @@ int main(){
 	presente_t v_presentes[n];
 	lePresentes(n, v_presentes);
 
-	for(int i = 0; i<n; i++)
-		printf("v_%d: %d\tp_%d: %d\n", i, v_presentes[i].valor, i, v_presentes[i].peso);
+//	for(int i = 0; i<n; i++)
+//		printf("v_%d: %d\tp_%d: %d\n", i, v_presentes[i].valor, i, v_presentes[i].peso);
 
 	atual->cabeca = NULL;
 	atual->peso = 0;
 	atual->valor = 0;
 
-	atual->cabeca = &v_presentes[0];
-	melhor = criarSaco(pmax, &atual, &melhor, v_presentes);
-
-	printf("melhor: %d\n", melhor->peso);
+	melhor = criarSaco(pmax, n, 0, &atual, &melhor, v_presentes);
+	
+	struct presente *aux = melhor->cabeca;
+	while(aux->prox){
+		printf("p: %d\tv: %d\n", aux->valor, aux->peso);
+		aux = aux->prox;
+	}
 
 	return 0;
 }
