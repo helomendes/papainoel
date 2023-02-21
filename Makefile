@@ -1,4 +1,4 @@
-parametrosCompilacao=-Wall #-Wsahdow
+parametrosCompilacao=-Wall -g #-Wsahdow
 nomePrograma=exec
 
 all: $(nomePrograma)

@@ -1,23 +1,25 @@
-#ifndef PRESENTES_H
-#define PRESENTES_H
-
 typedef struct presente{
 	int valor;
 	int peso;
 	int id;
-	struct presente *prox;
 } presente_t;
 
 typedef struct saco{
-	presente_t *cabeca;
-	int peso;
-	int valor;
+    int valor;
+    int peso;
+    presente_t *v;
+    int it;
 } saco_t;
 
-void lePresentes(int n, presente_t v[]);
+void le_presentes(int n, presente_t v[]);
 
-void adicionarPresente(struct saco **atual, struct presente presente);
+saco_t *cria_saco(int n);
 
-void removerPresente(struct saco **atual);
+void passar_saco(saco_t *atual, saco_t *melhor, int n);
 
-#endif
+void adicionar_presente(saco_t *atual, presente_t presente);
+
+void remover_presente(saco_t *atual);
+
+
+    
