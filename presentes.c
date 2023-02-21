@@ -12,6 +12,8 @@ void le_presentes(int n, presente_t v[]){
 	}
 }
 
+/* Retorna um presente que tem -1 em todos os seus parametros.
+ * Eh usado -1 porque o id pode ser 0 na linguagem C. */
 presente_t presente_nulo(){
     presente_t presente;
     presente.id = -1;
@@ -20,6 +22,7 @@ presente_t presente_nulo(){
     return presente;
 }
 
+/* Inicializa o saco com presentes "nulos". */
 void inicializa_saco(saco_t *atual, int n){
     int i;
     presente_t presente = presente_nulo();
@@ -32,7 +35,7 @@ saco_t *cria_saco(int n){
     saco_t *atual = malloc(sizeof(saco_t));
     if (!atual)
         return NULL;
-    atual->v = malloc(sizeof(presente_t)*n);
+    atual->v = malloc(sizeof(presente_t)*(n + 1));
     if (!atual->v)
         return NULL;
     inicializa_saco(atual, n);
@@ -70,3 +73,10 @@ void remover_presente(saco_t *atual){
     atual->valor = atual->valor - presente.valor;
 }
 
+void imprime_saco(saco_t *saco){
+    int i = 0;
+    while (saco->v[i].id != -1){
+        printf("ID: %d\n", saco->v[i].id);
+        i++;
+    }
+}

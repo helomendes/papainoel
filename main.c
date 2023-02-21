@@ -23,6 +23,7 @@ int main(){
     presente_t v_presentes[n];
     le_presentes(n, v_presentes);
     melhor_saco(pmax, n, 0, atual, melhor, v_presentes);
+    imprime_saco(melhor);
     printf("Total: %d\n", melhor->valor);
     return 0;
 }
