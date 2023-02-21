@@ -45,15 +45,15 @@ saco_t *cria_saco(int n){
     return atual;
 }
 
-void passar_saco(saco_t *atual, saco_t *melhor, int n){
+void passar_saco(saco_t *saco1, saco_t *saco2, int n){
     int i = 0;
-    inicializa_saco(melhor, n);
-    while (atual->v[i].id != -1){
-        melhor->v[i] = atual->v[i];
+    inicializa_saco(saco2, n);
+    while (saco1->v[i].id != -1){
+        saco2->v[i] = saco1->v[i];
         i++;
     }
-    melhor->peso = atual->peso;
-    melhor->valor = atual->valor;
+    saco2->peso = saco1->peso;
+    saco2->valor = saco1->valor;
 }
 
 void adicionar_presente(saco_t *atual, presente_t presente){
@@ -75,8 +75,21 @@ void remover_presente(saco_t *atual){
 
 void imprime_saco(saco_t *saco){
     int i = 0;
+    if (saco->v[i].id == -1){
+        printf("Saco vazio\n");
+        return;
+    }
+    /* Loop para imprimir os id's. */
     while (saco->v[i].id != -1){
-        printf("ID: %d\n", saco->v[i].id);
+        printf("%d ", saco->v[i].id);
         i++;
     }
+    printf("\n");
+    printf("%d\n", saco->valor);
+}
+
+saco_t *destroi_saco(saco_t *saco){
+    free(saco->v);
+    free(saco);
+    return NULL;
 }

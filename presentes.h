@@ -19,8 +19,8 @@ void le_presentes(int n, presente_t v[]);
  * Retorna essa variavel caso o processo funcione, e NULL caso contrario. */
 saco_t *cria_saco(int n);
 
-/* O melhor saco recebe todas os dados do saco atual.*/
-void passar_saco(saco_t *atual, saco_t *melhor, int n);
+/* O saco2 recebe todos os dados do saco1. */
+void passar_saco(saco_t *saco1, saco_t *saco2, int n);
 
 /* Adiciona o presente no saco, e modifica o peso e o valor do saco
  * de acordo com o presente. */
@@ -32,5 +32,8 @@ void remover_presente(saco_t *atual);
 
 /* Imprime o id dos presentes no saco.*/
 void imprime_saco(saco_t *saco);
+
+/* Libera a memoria alocada dinamicamente para um saco. */
+saco_t *destroi_saco(saco_t *saco);
 
     
